@@ -1,3 +1,3 @@
 # Algoritmos-de-Redes
-ok
-ok
+
+Aqui estaram todos os algoritmos usaados na disciplina de Redes de Computadores.
