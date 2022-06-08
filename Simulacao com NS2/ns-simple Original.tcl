@@ -120,10 +120,10 @@ $pareto set fid_ 3
 #$ns at 4.5 "$udp stop"
 #$ns at 4.5 "$udp2 stop"
 
-$ns at 1.0 "$ser1 start"
+$ns at 1.0 "$ftp start"
 $ns at 1.0 "$cbr start"
 $ns at 4.0 "$pareto start"
-$ns at 4.5 "$ser1 stop"
+$ns at 4.5 "$ftp stop"
 $ns at 4.5 "$cbr stop"
 $ns at 4.5 "$pareto stop"
 
