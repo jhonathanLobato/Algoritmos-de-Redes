@@ -112,7 +112,7 @@ $ser2 set fid_ 2
 $ns at 1.0 "$ser1 start"
 $ns at 1.0 "$ser2 start"
 $ns at 4.5 "$ser1 stop"
-$ns at 4.5 "ser2 stop"
+$ns at 4.5 "$ser2 stop"
 
 #Detach tcp and sink agents (not really necessary)
 $ns at 4.5 "$ns detach-agent $n0 $tcp ; $ns detach-agent $n3 $sink"
