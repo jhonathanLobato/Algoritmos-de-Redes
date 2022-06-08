@@ -77,9 +77,9 @@ $ns connect $udp $null
 $udp set fid_ 2
 
 # Service 1
-set ser1 [new Application/TCP]
+set ser1 [new Application/FTP]
 $ser1 attach-agent $tcp
-$ser1 set type_ TCP
+$ser1 set type_ FTP
 
 #Setup a CBR over UDP connection
 #set cbr [new Application/Traffic/CBR]
