@@ -61,7 +61,7 @@ $ns attach-agent $n0 $tcp
 set sink [new Agent/TCPSink]
 $ns attach-agent $n3 $sink
 $ns connect $tcp $sink
-$tcp set fid_ 1
+#$tcp set fid_ 1
 
 #Setup a FTP over TCP connection
 #set ftp [new Application/FTP]
@@ -74,12 +74,19 @@ $ns attach-agent $n1 $udp
 set null [new Agent/Null]
 $ns attach-agent $n3 $null
 $ns connect $udp $null
-$udp set fid_ 2
+#$udp set fid_ 2
 
 # Service 1
 set ser1 [new Application/FTP]
 $ser1 attach-agent $tcp
 $ser1 set type_ FTP
+$ser1 set fid_ 1
+
+# Service 2
+set ser2 [new Application/FTP]
+$ser2 attach-agent $udp
+$ser2 set type_ FTP
+$ser2 set fid_ 2
 
 #Setup a CBR over UDP connection
 #set cbr [new Application/Traffic/CBR]
@@ -103,7 +110,9 @@ $ser1 set type_ FTP
 #$ns at 4.5 "$udp2 stop"
 
 $ns at 1.0 "$ser1 start"
+$ns at 1.0 "$ser2 start"
 $ns at 4.5 "$ser1 stop"
+$ns at 4.5 "ser2 stop"
 
 #Detach tcp and sink agents (not really necessary)
 $ns at 4.5 "$ns detach-agent $n0 $tcp ; $ns detach-agent $n3 $sink"
