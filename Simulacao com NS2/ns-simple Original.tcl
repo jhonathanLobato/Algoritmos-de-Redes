@@ -82,19 +82,20 @@ $ser1 attach-agent $tcp
 $ser1 set type_ FTP
 $ser1 set fid_ 1
 
-# Service 2
-set ser2 [new Application/FTP]
-$ser2 attach-agent $udp
-$ser2 set type_ FTP
-$ser2 set fid_ 2
+# Novo
+#set ser2 [new Agent/TCP/FullTcp]
+#set sink [new Agent/TCP/FullTcp]
+#$ns_ attach-agent $node_(s1) $src
+#$ns_ attach-agent $node_(k1) $sink
+#$ns_ connect $src $sink
 
-#Setup a CBR over UDP connection
-#set cbr [new Application/Traffic/CBR]
-#$cbr attach-agent $udp
-#$cbr set type_ CBR
-#$cbr set packet_size_ 1000
-#$cbr set rate_ 1mb
-#$cbr set random_ false
+Setup a CBR over UDP connection
+set cbr [new Application/Traffic/CBR]
+$cbr attach-agent $udp
+$cbr set type_ CBR
+$cbr set packet_size_ 1000
+$cbr set rate_ 1mb
+$cbr set random_ false
 
 #Schedule events for the CBR and FTP agents
 #$ns at 0.1 "$cbr start"
@@ -110,8 +111,10 @@ $ser2 set fid_ 2
 #$ns at 4.5 "$udp2 stop"
 
 $ns at 1.0 "$ser1 start"
-$ns at 1.0 "$ser2 start"
+$ns at 1.0 "$cbr start"
+$ns at 4.0 "$ser3 start"
 $ns at 4.5 "$ser1 stop"
+$ns at 4.5 "$cbr stop"
 $ns at 4.5 "$ser2 stop"
 
 #Detach tcp and sink agents (not really necessary)
