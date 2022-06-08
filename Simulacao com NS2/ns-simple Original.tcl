@@ -76,6 +76,11 @@ $ns attach-agent $n3 $null
 $ns connect $udp $null
 $udp set fid_ 2
 
+# Service 1
+set ser1 [new Application/TCP]
+$ser1 attach-agent $tcp
+$ser1 set type_ TCP
+
 #Setup a CBR over UDP connection
 #set cbr [new Application/Traffic/CBR]
 #$cbr attach-agent $udp
@@ -90,12 +95,15 @@ $udp set fid_ 2
 #$ns at 4.0 "$ftp stop"
 #$ns at 4.5 "$cbr stop"
 # Editado
-$ns at 1.0 "$tcp start"
-$ns at 1.0 "$udp start"
+#$ns at 1.0 "$tcp start"
+#$ns at 1.0 "$udp start"
 #$ns at 4.0 "$udp2 start"
-$ns at 4.5 "$tcp stop"
-$ns at 4.5 "$udp stop"
+#$ns at 4.5 "$tcp stop"
+#$ns at 4.5 "$udp stop"
 #$ns at 4.5 "$udp2 stop"
+
+$ns at 1.0 "$ser1 start"
+$ns at 4.5 "$ser1 stop"
 
 #Detach tcp and sink agents (not really necessary)
 $ns at 4.5 "$ns detach-agent $n0 $tcp ; $ns detach-agent $n3 $sink"
